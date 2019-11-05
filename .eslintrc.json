@@ -67,6 +67,7 @@
           "render"
         ]
       }
-    ]
+    ],
+    "global-require": 0
   }
 }

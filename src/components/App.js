@@ -4,11 +4,9 @@ import {
   BrowserRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import configs from 'configs';
 import { testPromiseFailure, testPromiseSuccess } from 'redux/actions/app.action';
 
-import logo from 'assets/images/logo.svg';
-import 'assets/css/App.css';
+import Home from 'components/Home';
 
 export class App extends React.Component {
   getSuccess = () => {
@@ -42,14 +40,14 @@ export class App extends React.Component {
           <Switch>
             <Route path="/home" component={null} />
             <Route path="/about" component={null} />
-            <Route path="/" exact>
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+            <Route path="/" exact component={Home}>
+
+              {/* <header className="">
                 <p>{`App name: ${configs.appName}`}</p>
                 <p>{`API URL: ${configs.apiUrl}`}</p>
                 <button onClick={this.getSuccess}>Test redux success</button>
                 <button onClick={this.getFailure}>Test redux failure</button>
-              </header>
+              </header> */}
             </Route>
             <Redirect to="/" />
           </Switch>
