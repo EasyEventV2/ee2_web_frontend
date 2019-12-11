@@ -8,3 +8,7 @@ export const login = ({ username, password }) => ({
     password,
   }),
 });
+
+export const logout = () => ({
+  type: userAction.LOGOUT,
+});

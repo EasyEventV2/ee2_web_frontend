@@ -1,12 +1,21 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ModalKey } from 'constants/modal';
 import { showModal } from 'redux/actions/modal.action';
+import { logout } from 'redux/actions/user.action';
 
 export class Header extends Component {
   onLogin = () => {
     const { showModal } = this.props;
     showModal(ModalKey.LOGIN);
+  }
+
+  onLogout = () => {
+    const { logout } = this.props;
+    logout();
   }
 
   renderNotLoggedIn = () => (
@@ -22,7 +31,28 @@ export class Header extends Component {
   );
 
   renderLoggedIn = () => (
-    <div>Avatar</div>
+    <div className="dropdown">
+      <button
+        className="btn p-0"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i className="fas fa-user-circle h2 m-0" style={{ lineHeight: '1em' }} />
+      </button>
+      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a
+          role="button"
+          className="dropdown-item"
+          onClick={this.onLogout}
+          style={{ cursor: 'pointer' }}
+        >
+          Log out
+        </a>
+      </div>
+    </div>
   );
 
   render() {
@@ -56,6 +86,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = {
   showModal,
+  logout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

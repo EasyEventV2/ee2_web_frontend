@@ -8,6 +8,8 @@ export const userAction = {
   LOGIN: 'LOGIN',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAILURE: 'LOGIN_FAILURE',
+
+  LOGOUT: 'LOGOUT',
 };
 
 export const modalAction = {

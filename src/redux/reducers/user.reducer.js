@@ -21,6 +21,14 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+    case userAction.LOGOUT: {
+      Auth.deleteAccessToken();
+      return {
+        ...INITIAL_STATE,
+        loggedIn: Auth.isAuth(),
+      };
+    }
+
     default:
       break;
   }
