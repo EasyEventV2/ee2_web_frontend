@@ -9,3 +9,7 @@ export const userAction = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAILURE: 'LOGIN_FAILURE',
 };
+
+export const modalAction = {
+  SHOW_MODAL: 'SHOW_MODAL',
+};

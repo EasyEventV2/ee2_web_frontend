@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import { testPromiseFailure, testPromiseSuccess } from 'redux/actions/app.action';
 
+import ModalContainer from 'components/Modal';
 import Home from 'components/Home';
 
 export class App extends React.Component {
@@ -52,6 +53,7 @@ export class App extends React.Component {
             <Redirect to="/" />
           </Switch>
         </Router>
+        <ModalContainer />
       </div>
     );
   }

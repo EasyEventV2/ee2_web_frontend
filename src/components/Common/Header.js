@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from 'redux/actions/user.action';
+import { ModalKey } from 'constants/modal';
+import { showModal } from 'redux/actions/modal.action';
 
 export class Header extends Component {
   onLogin = () => {
-    const { login } = this.props;
-    login();
+    const { showModal } = this.props;
+    showModal(ModalKey.LOGIN);
   }
 
   renderNotLoggedIn = () => (
@@ -54,7 +55,7 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = {
-  login,
+  showModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
