@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import rootReducer from 'redux/reducers/root.reducer';
+import rootReducer from 'datalayer/reducers/root.reducer';
 
 import promiseMiddleware from './promiseMiddleware';
 

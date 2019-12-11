@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from 'redux/actions/user.action';
+import { login } from 'datalayer/actions/user.action';
 import { ModalKey } from 'constants/modal';
 import BaseModal from 'components/Common/BaseModal';
 

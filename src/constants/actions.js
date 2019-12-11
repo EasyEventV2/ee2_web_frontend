@@ -10,6 +10,10 @@ export const userAction = {
   LOGIN_FAILURE: 'LOGIN_FAILURE',
 
   LOGOUT: 'LOGOUT',
+
+  SIGNUP: 'SIGNUP',
+  SIGNUP_SUCCESS: 'SIGNUP_SUCCESS',
+  SIGNUP_FAILURE: 'SIGNUP_FAILURE',
 };
 
 export const modalAction = {

@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case userAction.SIGNUP_SUCCESS:
     case userAction.LOGIN_SUCCESS: {
       const { userId, token } = action.payload.data;
       Auth.setAccessToken(token);

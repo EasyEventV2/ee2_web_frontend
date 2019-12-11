@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { testPromiseFailure, testPromiseSuccess } from 'redux/actions/app.action';
+import { testPromiseFailure, testPromiseSuccess } from 'datalayer/actions/app.action';
 
 import ModalContainer from 'components/Modal';
 import Home from 'components/Home';

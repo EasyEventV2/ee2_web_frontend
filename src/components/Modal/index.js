@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ModalKey } from 'constants/modal';
-import { showModal } from 'redux/actions/modal.action';
+import { showModal } from 'datalayer/actions/modal.action';
 import LoginModal from './Login';
+import SignUpModal from './SignUp';
 
 const modalMapping = {
   [ModalKey.LOGIN]: LoginModal,
+  [ModalKey.SIGNUP]: SignUpModal,
 };
 
 export class ModalContainer extends Component {

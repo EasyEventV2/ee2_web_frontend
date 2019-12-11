@@ -4,8 +4,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ModalKey } from 'constants/modal';
-import { showModal } from 'redux/actions/modal.action';
-import { logout } from 'redux/actions/user.action';
+import { showModal } from 'datalayer/actions/modal.action';
+import { logout } from 'datalayer/actions/user.action';
 
 export class Header extends Component {
   onLogin = () => {
@@ -18,6 +18,11 @@ export class Header extends Component {
     logout();
   }
 
+  onSignUp = () => {
+    const { showModal } = this.props;
+    showModal(ModalKey.SIGNUP);
+  }
+
   renderNotLoggedIn = () => (
     <>
       <button
@@ -26,7 +31,12 @@ export class Header extends Component {
       >
         Đăng nhập
       </button>
-      <button className="btn btn-light ml-1">Đăng ký</button>
+      <button
+        className="btn btn-light ml-1"
+        onClick={this.onSignUp}
+      >
+        Đăng ký
+      </button>
     </>
   );
 
