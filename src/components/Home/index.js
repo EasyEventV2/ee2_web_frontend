@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from 'components/Common/Header';
-import HomeSlider from 'components/Home/HomeSlider';
+import HotEventList from 'components/Home/HotEventList';
 
 
 export class Home extends Component {
@@ -8,8 +8,8 @@ export class Home extends Component {
     return (
       <>
         <Header />
-        <div className="container">
-          <HomeSlider />
+        <div className="container-fluid">
+          <HotEventList />
         </div>
       </>
     );
