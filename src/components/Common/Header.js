@@ -68,7 +68,7 @@ export class Header extends Component {
   render() {
     const { loggedIn } = this.props;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <a className="navbar-brand" href="/">
           <img className="ee-headerLogo" src={require('assets/images/logo-fit-256x177.png')} alt="" />
         </a>

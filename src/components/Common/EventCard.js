@@ -1,9 +1,18 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
-function EventCard() {
+function EventCard({ onClick }) {
   return (
-    <div className="col-md-6 p-3">
-      <div className="card">
+    <div
+      role="button"
+      className="col-md-6 p-3"
+      style={{
+        cursor: onClick ? 'pointer' : null,
+      }}
+      onClick={onClick}
+    >
+      <div className="card ee-hoverFocus">
         <div
           className="container-fluid p-0"
           style={{

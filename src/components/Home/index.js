@@ -8,7 +8,7 @@ export class Home extends Component {
     return (
       <>
         <Header />
-        <div className="container-fluid">
+        <div className="container-fluid p-0">
           <HotEventList />
         </div>
       </>
