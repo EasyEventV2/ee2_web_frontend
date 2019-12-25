@@ -1,5 +1,5 @@
 const prodConfig = {
-  apiUrl: 'http://api-prod.example.com',
+  apiUrl: 'https://api.easy-event.tk',
 };
 
 export default prodConfig;

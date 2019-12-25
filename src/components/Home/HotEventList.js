@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getHotEventList } from 'datalayer/selectors/event.selector';
 import EventCard from 'components/Common/EventCard';
 
 class HotEventList extends Component {
@@ -10,6 +12,7 @@ class HotEventList extends Component {
     const { eventList } = this.props;
     return eventList.map((event) => (
       <EventCard
+        event={event}
         onClick={() => this.navigateToEventDetail(event.id)}
       />
     ));
@@ -32,7 +35,11 @@ class HotEventList extends Component {
 }
 
 HotEventList.defaultProps = {
-  eventList: [1, 2, 3, 4, 5],
+  eventList: [],
 };
 
-export default HotEventList;
+const mapStateToProps = ({ event }) => ({
+  eventList: getHotEventList(event),
+});
+
+export default connect(mapStateToProps, null)(HotEventList);
