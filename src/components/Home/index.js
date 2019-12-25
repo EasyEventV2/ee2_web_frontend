@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getHotEvents } from 'datalayer/actions/event.action';
 import Header from 'components/Common/Header';
+import Footer from 'components/Common/Footer';
 import HotEventList from 'components/Home/HotEventList';
 
 
@@ -18,6 +19,7 @@ export class Home extends Component {
         <div className="container-fluid p-0">
           <HotEventList />
         </div>
+        <Footer />
       </>
     );
   }
