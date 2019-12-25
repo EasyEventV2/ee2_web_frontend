@@ -6,7 +6,9 @@ function Footer() {
       <div className="container py-4">
         <div className="row">
           <div className="col-md-3">
-            <img className="footer-logo" src={require('assets/images/logo-square-128x128.png')} alt="" />
+            <div className="m-auto">
+              <img src={require('assets/images/logo-square-128x128.png')} alt="" />
+            </div>
           </div>
           <div className="col-md-3">
             <h5>Easy Event</h5>
@@ -33,7 +35,7 @@ function Footer() {
           </div>
         </div>
         <div className="d-flex justify-content-center">
-          <h6>Copyright © 2019 Easy Event. All rights reserved.</h6>
+          <h6 className="text-muted">Copyright © 2019 Easy Event. All rights reserved.</h6>
         </div>
       </div>
     </footer>

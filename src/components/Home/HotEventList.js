@@ -30,7 +30,7 @@ class HotEventList extends Component {
           <div className="row">
             {this.renderItem()}
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center p-3">
             <Pagination
               totalPages={totalPages}
               currentPage={currentPage}
