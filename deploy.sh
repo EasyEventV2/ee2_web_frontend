@@ -1,7 +1,6 @@
 #!/bin/bash
 
 LOG_FILE="log.txt"
-
 function timestamp(){
   echo "[$(date +%Y-%m-%d_%H-%M-%S)]"
 }
