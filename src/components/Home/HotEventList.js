@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getHotEvents } from 'datalayer/selectors/event.selector';
+import { withRouter } from 'react-router-dom';
+import { selectHotEvents } from 'datalayer/selectors/event.selector';
 import EventCard from 'components/Common/EventCard';
 import Pagination from 'components/Common/Pagination';
 
 class HotEventList extends Component {
   navigateToEventDetail = (eventId) => {
-    console.log({ eventId });
+    const { history } = this.props;
+    history.push(`/event/${eventId}`);
   }
 
   renderItem = () => {
@@ -14,7 +16,7 @@ class HotEventList extends Component {
     return eventList.map((event) => (
       <EventCard
         event={event}
-        onClick={() => this.navigateToEventDetail(event.id)}
+        onClick={() => this.navigateToEventDetail(event._id)}
       />
     ));
   }
@@ -48,7 +50,7 @@ HotEventList.defaultProps = {
 };
 
 const mapStateToProps = ({ event }) => {
-  const { eventList, totalPages, currentPage } = getHotEvents(event);
+  const { eventList, totalPages, currentPage } = selectHotEvents(event);
   return {
     eventList,
     totalPages,
@@ -56,4 +58,4 @@ const mapStateToProps = ({ event }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(HotEventList);
+export default connect(mapStateToProps, null)(withRouter(HotEventList));

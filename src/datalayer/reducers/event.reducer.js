@@ -1,7 +1,8 @@
 import { eventAction } from 'constants/actions';
 
 export const INITIAL_STATE = {
-  hotEvents: {},
+  hotEvents: null,
+  eventDetail: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,6 +11,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         hotEvents: action.payload.data,
+      };
+    }
+
+    case eventAction.GET_EVENT_DETAIL_SUCCESS: {
+      return {
+        ...state,
+        eventDetail: action.payload.data,
       };
     }
 

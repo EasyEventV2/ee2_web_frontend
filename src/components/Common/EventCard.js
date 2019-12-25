@@ -1,56 +1,9 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import moment from 'moment';
+import Calendar from 'components/Common/Calendar';
 
 function EventCard({ onClick, event }) {
-  const renderCalendar = (dateTime) => {
-    const month = moment(dateTime).format('MMMM');
-    const date = moment(dateTime).format('DD');
-    const dayOfWeek = moment(dateTime).format('dddd');
-    return (
-      <div
-        className="d-flex flex-column border"
-        style={{
-          width: 80,
-          height: 70,
-          boxShadow: '2px 2px #dddddd',
-        }}
-      >
-        <div
-          className="bg-danger text-center text-white"
-          style={{
-            height: 20,
-            fontSize: 10,
-            lineHeight: 2,
-          }}
-        >
-          {month}
-        </div>
-        <div>
-          <div
-            className="text-center"
-            style={{
-              height: 30,
-              fontSize: 20,
-            }}
-          >
-            {date}
-          </div>
-          <div
-            className="text-center"
-            style={{
-              height: 20,
-              fontSize: 10,
-            }}
-          >
-            {dayOfWeek}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div
       role="button"
@@ -87,7 +40,7 @@ function EventCard({ onClick, event }) {
                 </div>
               </div>
             </div>
-            {renderCalendar(event.start_time)}
+            <Calendar dateTime={event.start_time} />
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { testPromiseFailure, testPromiseSuccess } from 'datalayer/actions/app.ac
 
 import ModalContainer from 'components/Modal';
 import Home from 'components/Home';
+import EventDetail from 'components/EventDetail';
 
 export class App extends React.Component {
   getSuccess = () => {
@@ -39,17 +40,9 @@ export class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/home" component={null} />
+            <Route path="/event/:eventId" component={EventDetail} />
             <Route path="/about" component={null} />
-            <Route path="/" exact component={Home}>
-
-              {/* <header className="">
-                <p>{`App name: ${configs.appName}`}</p>
-                <p>{`API URL: ${configs.apiUrl}`}</p>
-                <button onClick={this.getSuccess}>Test redux success</button>
-                <button onClick={this.getFailure}>Test redux failure</button>
-              </header> */}
-            </Route>
+            <Route path="/" exact component={Home} />
             <Redirect to="/" />
           </Switch>
         </Router>

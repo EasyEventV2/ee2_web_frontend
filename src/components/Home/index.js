@@ -16,7 +16,7 @@ export class Home extends Component {
     return (
       <>
         <Header />
-        <div className="container-fluid p-0">
+        <div className="container-fluid p-0 ee-minHeightFull">
           <HotEventList />
         </div>
         <Footer />

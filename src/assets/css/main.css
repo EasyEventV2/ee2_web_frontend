@@ -17,3 +17,7 @@
   transform: scale(1.03);
   box-shadow: 1px 1px 20px 0px #00000010;
 }
+
+.ee-minHeightFull {
+  min-height: 100vh;
+}

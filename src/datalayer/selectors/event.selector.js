@@ -1,4 +1,4 @@
-export const getHotEvents = (state) => {
+export const selectHotEvents = (state) => {
   let eventList = [];
   let totalPages = 1;
   let currentPage = 1;
@@ -17,5 +17,20 @@ export const getHotEvents = (state) => {
     eventList,
     totalPages,
     currentPage,
+  };
+};
+
+export const selectEventDetail = (state) => {
+  const data = (state && state.eventDetail) ? state.eventDetail : {};
+  return {
+    contact: {},
+    location: {},
+    category: [],
+    _id: null,
+    name: null,
+    description: null,
+    start_time: 0,
+    end_time: 0,
+    ...data,
   };
 };
