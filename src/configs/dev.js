@@ -1,5 +1,5 @@
 const devConfig = {
-  apiUrl: 'http://api-dev.example.com',
+  apiUrl: 'https://api.easy-event.tk',
 };
 
 export default devConfig;

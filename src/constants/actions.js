@@ -19,3 +19,8 @@ export const userAction = {
 export const modalAction = {
   SHOW_MODAL: 'SHOW_MODAL',
 };
+
+export const eventAction = {
+  GET_EVENTS: 'GET_EVENTS',
+  GET_EVENTS_SUCCESS: 'GET_EVENTS_SUCCESS',
+};
