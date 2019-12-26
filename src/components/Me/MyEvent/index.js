@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { showError } from 'utils/toastr';
 import { getMyEvents } from 'datalayer/actions/user.action';
+import { Role } from 'constants/common';
 import Pagination from 'components/Common/Pagination';
+import Spinner from 'components/Common/Spinner';
 
 class MyEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       eventList: [],
       paging: {},
     };
@@ -22,6 +27,7 @@ class MyEvent extends Component {
       }
       const { data } = res.result;
       this.setState({
+        loading: false,
         eventList: data.itemsList,
         paging: {
           totalPages: data.totalPages,
@@ -31,6 +37,19 @@ class MyEvent extends Component {
     });
   }
 
+  renderRole = (role) => {
+    if (role === Role.ADMIN) {
+      return <span className="badge badge-primary">ADMIN</span>;
+    }
+    if (role === Role.STAFF) {
+      return <span className="badge badge-secondary">STAFF</span>;
+    }
+    if (role === Role.OPERATOR) {
+      return <span className="badge badge-success">OPERATOR</span>;
+    }
+    return null;
+  }
+
   renderEventList = () => {
     const { eventList } = this.state;
     return (
@@ -38,16 +57,20 @@ class MyEvent extends Component {
         <thead className="thead-light">
           <tr>
             <th scope="col">Tên sự kiện</th>
-            <th scope="col">Người tạo</th>
+            <th scope="col">Thời gian</th>
             <th scope="col">Vai trò của bạn</th>
+            <th scope="col">Hành động</th>
           </tr>
         </thead>
         <tbody>
-          {eventList.map(() => (
-            <tr key="">
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
+          {eventList.map((item) => (
+            <tr key={item.event._id}>
+              <td>
+                <Link target="_blank" to={`/event/${item.event._id}`}>{item.event.name}</Link>
+              </td>
+              <td>{`${moment(item.event.start_time).format('DD/M/YYYY')} - ${moment(item.event.end_time).format('DD/M/YYYY')}`}</td>
+              <td className="text-center">{this.renderRole(item.name)}</td>
+              <td><Link target="_blank" to={`/event/${item.event._id}`}>Chỉnh sửa</Link></td>
             </tr>
           ))}
         </tbody>
@@ -56,18 +79,29 @@ class MyEvent extends Component {
   }
 
   render() {
-    const { paging } = this.state;
+    const { paging, loading } = this.state;
     return (
-      <div className="container py-5">
+      <div className="container py-5 h-100">
         <h3 className="mb-3">Sự kiện của tôi</h3>
-        {this.renderEventList()}
-        {paging.totalPages && (
-          <Pagination
-            totalPages={paging.totalPages}
-            currentPage={paging.currentPage}
-            alwaysShowNavigator
-          />
-        )}
+        {
+          loading
+            ? (
+              <Spinner />
+            ) : (
+              <>
+                {this.renderEventList()}
+                {paging.totalPages && (
+                  <Pagination
+                    totalPages={paging.totalPages}
+                    currentPage={paging.currentPage}
+                    alwaysShowNavigator
+                    className="float-right"
+                  />
+                )}
+              </>
+            )
+        }
+
       </div>
     );
   }

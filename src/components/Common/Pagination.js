@@ -7,6 +7,7 @@ function Pagination({
   currentPage,
   alwaysShowNavigator,
   location,
+  className,
 }) {
   const getBeforeCurrent = (limit = 5) => {
     const result = [];
@@ -63,7 +64,7 @@ function Pagination({
   }
 
   return (
-    <nav>
+    <nav className={className}>
       <ul className="pagination">
         {(alwaysShowNavigator || beforeCurrent.length > 0) && renderItem(PagingText.FIRST)}
         {items.map(item => renderItem(item))}
