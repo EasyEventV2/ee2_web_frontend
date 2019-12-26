@@ -30,3 +30,8 @@ export const getInfo = () => ({
   type: userAction.GET_INFO,
   promise: get('/users/me'),
 });
+
+export const getMyEvents = (page = 1) => ({
+  type: userAction.GET_MY_EVENTS,
+  promise: get(`/users/me/events?p=${page}`),
+});

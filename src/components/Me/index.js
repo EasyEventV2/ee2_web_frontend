@@ -34,7 +34,7 @@ class Me extends Component {
   }
 
   renderMain = () => (
-    <div className="col-lg-9 col-md-8">
+    <div className="col-12">
       <Switch>
         <Route path="/me/event" component={MyEvent} />
         <Route path="/me/ticket" component={MyTicket} />
@@ -50,7 +50,6 @@ class Me extends Component {
 
         <div className="container-fluid p-0 ee-minHeightFull d-flex">
           <div className="row flex-grow-1">
-            {this.renderSidebar()}
             {this.renderMain()}
           </div>
         </div>

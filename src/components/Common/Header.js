@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { ModalKey } from 'constants/modal';
 import { showModal } from 'datalayer/actions/modal.action';
 import { logout } from 'datalayer/actions/user.action';
@@ -48,24 +48,37 @@ export class Header extends Component {
 
   renderLoggedIn = () => (
     <>
-      <button
-        className="btn btn-warning mr-3"
-        onClick={this.onGoToMyEvents}
-      >
-        Sự kiện của tôi
-      </button>
+      <div className="nav-item dropdown d-inline-block mr-3">
+        <a
+          className="nav-link dropdown-toggle"
+          style={{ cursor: 'pointer' }}
+          id="dropdown-me"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Quản lý sự kiện
+        </a>
+        <div className="dropdown-menu" aria-labelledby="dropdown-me">
+          <Link className="dropdown-item" to="/me/event">Tạo sự kiện mới</Link>
+          <div className="dropdown-divider" />
+          <Link className="dropdown-item" to="/me/event">Sự kiện của tôi</Link>
+          <Link className="dropdown-item" to="/me/ticket">Vé của tôi</Link>
+        </div>
+      </div>
       <div className="d-inline-block dropdown">
         <button
           className="btn p-0"
           type="button"
-          id="dropdownMenuButton"
+          id="dropdown-user"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
           <i className="fas fa-user-circle h2 m-0" style={{ lineHeight: '1em' }} />
         </button>
-        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
           <a
             role="button"
             className="dropdown-item"

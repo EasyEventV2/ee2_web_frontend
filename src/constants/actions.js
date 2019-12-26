@@ -19,6 +19,9 @@ export const userAction = {
 
   GET_INFO: 'GET_INFO',
   GET_INFO_SUCCESS: 'GET_INFO_SUCCESS',
+
+  GET_MY_EVENTS: 'GET_MY_EVENTS',
+  GET_MY_EVENTS_SUCCESS: 'GET_MY_EVENTS_SUCCESS',
 };
 
 export const modalAction = {
