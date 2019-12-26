@@ -11,6 +11,7 @@ import Home from 'components/Home';
 import EventDetail from 'components/EventDetail';
 import EventRegister from 'components/EventRegister';
 import Me from 'components/Me';
+import Verify from 'components/Verify';
 
 export class App extends React.Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ export class App extends React.Component {
       <Route exact path="/" component={Home} key="home" />,
       <Route exact path="/event/:eventId" component={EventDetail} key="event_detail" />,
       <Route exact path="/event/:eventId/register" component={EventRegister} key="event_register" />,
+      <Route path="/verify" component={Verify} key="verify" />,
     ];
 
     const privateRoutes = [
