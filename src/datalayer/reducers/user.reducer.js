@@ -3,7 +3,7 @@ import Auth from 'utils/auth';
 
 export const INITIAL_STATE = {
   loggedIn: Auth.isAuth(),
-  info: {},
+  info: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,6 +27,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         loggedIn: Auth.isAuth(),
+      };
+    }
+
+    case userAction.GET_INFO_SUCCESS: {
+      return {
+        ...state,
+        info: action.payload.data,
       };
     }
 

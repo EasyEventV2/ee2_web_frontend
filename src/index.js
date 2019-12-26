@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
+import 'toastr/build/toastr.min.css';
 import 'assets/css/main.css';
 import App from 'components/App';
 import store from 'datalayer/store';

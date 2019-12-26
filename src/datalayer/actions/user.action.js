@@ -1,5 +1,5 @@
 import { userAction } from 'constants/actions';
-import { post } from 'utils/request';
+import { get, post } from 'utils/request';
 
 export const login = ({ username, password }) => ({
   type: userAction.LOGIN,
@@ -24,4 +24,9 @@ export const signup = ({
     full_name: fullName,
     phone_number: phoneNumber,
   }),
+});
+
+export const getInfo = () => ({
+  type: userAction.GET_INFO,
+  promise: get('/users/me'),
 });

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { getEventDetail, registerGuest } from 'datalayer/actions/event.action';
 import { selectEventDetail } from 'datalayer/selectors/event.selector';
 import { selectUserId } from 'datalayer/selectors/user.selector';
+import { showError, showSuccess } from 'utils/toastr';
 import Header from 'components/Common/Header';
 import Footer from 'components/Common/Footer';
 import RegisterForm from 'components/EventRegister/RegisterForm';
@@ -25,6 +26,7 @@ class EventRegister extends Component {
     const {
       userId,
       registerGuest,
+      history,
       match: {
         params: {
           eventId,
@@ -32,7 +34,12 @@ class EventRegister extends Component {
       },
     } = this.props;
     registerGuest(eventId, values, userId).then(response => {
-      console.log(response);
+      if (response.error) {
+        showError(response.error.data && response.error.data.error.message);
+        return;
+      }
+      showSuccess('Đăng ký thành công!', 'Vui lòng kiểm tra email chúng tôi mới gửi cho bạn!');
+      history.push(`/event/${eventId}`);
     });
   }
 
@@ -149,4 +156,7 @@ const mapDispatchToProps = {
   registerGuest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventRegister);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EventRegister));

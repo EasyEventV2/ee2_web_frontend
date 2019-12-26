@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import momment from 'moment';
 import { FacebookShareButton } from 'react-share';
 import { getEventDetail } from 'datalayer/actions/event.action';
@@ -21,9 +22,21 @@ class EventDetail extends Component {
     getEventDetail(eventId);
   }
 
+  handleRegisterClick = () => {
+    const {
+      history,
+      match: {
+        params: {
+          eventId,
+        },
+      },
+    } = this.props;
+    history.push(`/event/${eventId}/register`);
+  }
+
   renderTop = () => {
     const {
-      start_time, end_time, name, location,
+      start_time, end_time, name, eventLocation,
     } = this.props;
     return (
       <>
@@ -57,8 +70,8 @@ class EventDetail extends Component {
                   <div className="d-flex align-items-center mb-3">
                     <i className="fas fa-map-marker-alt" />
                     <div className="ml-3">
-                      <h5 className="mb-2">{location.place}</h5>
-                      <h6 className="text-muted">{location.address}</h6>
+                      <h5 className="mb-2">{eventLocation.place}</h5>
+                      <h6 className="text-muted">{eventLocation.address}</h6>
                     </div>
                   </div>
                 </div>
@@ -66,9 +79,9 @@ class EventDetail extends Component {
               <div className="col-lg-4 d-flex flex-column">
                 <button
                   className="btn btn-warning btn-lg mt-3"
-                  onClick={() => {}}
+                  onClick={this.handleRegisterClick}
                 >
-                Tham gia ngay
+                  Tham gia ngay
                 </button>
                 <FacebookShareButton
                   url={window.location.href}
@@ -112,7 +125,7 @@ class EventDetail extends Component {
 
   renderInfoCard = () => {
     const {
-      location, start_time, end_time, contact,
+      eventLocation, start_time, end_time, contact,
     } = this.props;
     return (
       <div className="card mb-3 sticky-top" style={{ top: 85 }}>
@@ -126,11 +139,11 @@ class EventDetail extends Component {
             </div>
             <div className="pb-2">
               <strong>Địa điểm: </strong>
-              <span>{location && location.place}</span>
+              <span>{eventLocation && eventLocation.place}</span>
             </div>
             <div className="pb-2">
               <strong>Địa chỉ: </strong>
-              <span>{location && location.address}</span>
+              <span>{eventLocation && eventLocation.address}</span>
             </div>
             <div className="pb-2">
               <strong>Khởi đầu: </strong>
@@ -173,7 +186,7 @@ class EventDetail extends Component {
           <hr />
           <button
             className="btn btn-warning btn-lg btn-block"
-            onClick={() => {}}
+            onClick={this.handleRegisterClick}
           >
             Tham gia ngay
           </button>
@@ -202,11 +215,11 @@ class EventDetail extends Component {
   )
 
   renderMapCard = () => {
-    const { location } = this.props;
-    if (!location.latitude || !location.longitude) {
+    const { eventLocation } = this.props;
+    if (!eventLocation.latitude || !eventLocation.longitude) {
       return null;
     }
-    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&q=${location.latitude},${location.longitude}`;
+    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&q=${eventLocation.latitude},${eventLocation.longitude}`;
     return (
       <div className="card mb-3">
         <div className="card-body">
@@ -267,7 +280,7 @@ const mapStateToProps = ({ event }) => {
   } = selectEventDetail(event);
   return {
     contact,
-    location,
+    eventLocation: location,
     category,
     name,
     description,
@@ -280,4 +293,7 @@ const mapDispatchToProps = {
   getEventDetail,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EventDetail));

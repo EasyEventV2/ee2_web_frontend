@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { ModalKey } from 'constants/modal';
 import { showModal } from 'datalayer/actions/modal.action';
 import { logout } from 'datalayer/actions/user.action';
@@ -23,6 +24,11 @@ export class Header extends Component {
     showModal(ModalKey.SIGNUP);
   }
 
+  onGoToMyEvents = () => {
+    const { history } = this.props;
+    history.push('/me/event');
+  }
+
   renderNotLoggedIn = () => (
     <>
       <button
@@ -41,34 +47,42 @@ export class Header extends Component {
   );
 
   renderLoggedIn = () => (
-    <div className="dropdown">
+    <>
       <button
-        className="btn p-0"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
+        className="btn btn-warning mr-3"
+        onClick={this.onGoToMyEvents}
       >
-        <i className="fas fa-user-circle h2 m-0" style={{ lineHeight: '1em' }} />
+        Sự kiện của tôi
       </button>
-      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <a
-          role="button"
-          className="dropdown-item"
-          onClick={this.onLogout}
-          style={{ cursor: 'pointer' }}
+      <div className="d-inline-block dropdown">
+        <button
+          className="btn p-0"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
-          Log out
-        </a>
+          <i className="fas fa-user-circle h2 m-0" style={{ lineHeight: '1em' }} />
+        </button>
+        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a
+            role="button"
+            className="dropdown-item"
+            onClick={this.onLogout}
+            style={{ cursor: 'pointer' }}
+          >
+            Log out
+          </a>
+        </div>
       </div>
-    </div>
+    </>
   );
 
   render() {
     const { loggedIn } = this.props;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
         <a className="navbar-brand" href="/">
           <img className="ee-headerLogo" src={require('assets/images/logo-fit-256x177.png')} alt="" />
         </a>
@@ -99,4 +113,7 @@ const mapDispatchToProps = {
   logout,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Header));

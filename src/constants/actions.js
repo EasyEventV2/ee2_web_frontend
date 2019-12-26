@@ -14,6 +14,9 @@ export const userAction = {
   SIGNUP: 'SIGNUP',
   SIGNUP_SUCCESS: 'SIGNUP_SUCCESS',
   SIGNUP_FAILURE: 'SIGNUP_FAILURE',
+
+  GET_INFO: 'GET_INFO',
+  GET_INFO_SUCCESS: 'GET_INFO_SUCCESS',
 };
 
 export const modalAction = {
