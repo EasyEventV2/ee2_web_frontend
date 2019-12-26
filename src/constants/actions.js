@@ -1,6 +1,9 @@
 export const appAction = {
   VERIFY_GUEST: 'VERIFY_GUEST',
   VERIFY_GUEST_SUCCESS: 'VERIFY_GUEST_SUCCESS',
+
+  VERIFY_USER: 'VERIFY_USER',
+  VERIFY_USER_SUCCESS: 'VERIFY_USER_SUCCESS',
 };
 
 export const userAction = {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import QueryString from 'query-string';
-import { verifyGuest } from 'datalayer/actions/app.action';
+import { verifyGuest, verifyUser } from 'datalayer/actions/app.action';
 import Header from 'components/Common/Header';
 import Footer from 'components/Common/Footer';
 import Spinner from 'components/Common/Spinner';
@@ -22,15 +22,36 @@ class Verify extends Component {
   }
 
   componentDidMount() {
-    const { eventId, guestId } = QueryString.parse(this.props.location.search);
-    if (!eventId || !guestId) {
+    const { eventId, guestId, userId } = QueryString.parse(this.props.location.search);
+    if (userId) {
+      this.handleVerifyUser(userId);
+    } else if (eventId && guestId) {
+      this.handleVerifyGuest(eventId, guestId);
+    } else {
       this.setState({
         phase: Phase.FAILURE,
       });
-      return;
     }
+  }
+
+  handleVerifyGuest = (eventId, guestId) => {
     const { verifyGuest } = this.props;
     verifyGuest(eventId, guestId).then((res) => {
+      if (res.error) {
+        this.setState({
+          phase: Phase.FAILURE,
+        });
+        return;
+      }
+      this.setState({
+        phase: Phase.SUCCESS,
+      });
+    });
+  }
+
+  handleVerifyUser = (userId) => {
+    const { verifyUser } = this.props;
+    verifyUser(userId).then((res) => {
       if (res.error) {
         this.setState({
           phase: Phase.FAILURE,
@@ -53,7 +74,7 @@ class Verify extends Component {
     return (
       <>
         <Header />
-        <div className="container-fluid p-0 ee-minHeightFull">
+        <div className="container-fluid p-0 ee-minHeightFull d-flex">
           <div className="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
             {phase === Phase.LOADING && (
               <Spinner />
@@ -96,5 +117,6 @@ export default connect(
   null,
   {
     verifyGuest,
+    verifyUser,
   }
 )(withRouter(Verify));

@@ -19,6 +19,5 @@
 }
 
 .ee-minHeightFull {
-  display: flex;
   min-height: calc(100vh - 70px);
 }

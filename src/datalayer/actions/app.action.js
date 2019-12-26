@@ -7,3 +7,10 @@ export const verifyGuest = (eventId, guestId) => ({
     action: 'verify',
   }),
 });
+
+export const verifyUser = (userId) => ({
+  type: appAction.VERIFY_USER,
+  promise: put(`/users/${userId}`, {
+    action: 'verify',
+  }),
+});
