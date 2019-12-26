@@ -31,9 +31,14 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case userAction.GET_INFO_SUCCESS: {
+      const info = {
+        ...action.payload.data,
+      };
+      info.userId = info._id;
+      delete info._id;
       return {
         ...state,
-        info: action.payload.data,
+        info,
       };
     }
 

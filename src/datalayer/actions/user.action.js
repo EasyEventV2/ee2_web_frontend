@@ -17,7 +17,7 @@ export const signup = ({
   username, password, email, fullName, phoneNumber,
 }) => ({
   type: userAction.SIGNUP,
-  promise: post('/auth/signup', {
+  promise: post('/users', {
     username,
     password,
     email,
