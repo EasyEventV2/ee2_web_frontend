@@ -1,6 +1,9 @@
+import DateTimePicker from 'components/Common/Form/DateTimePicker';
+
 export const FormKey = {
   LOGIN: 'LOGIN',
   EVENT_REGISTER: 'EVENT_REGISTER',
+  EVENT_DETAIL: 'EVENT_DETAIL',
 };
 
 export const FieldType = {
@@ -33,5 +36,9 @@ export const FieldType = {
     component: 'input',
     className: 'form-check-input',
     wrapperClassName: 'form-check',
+  },
+  datetime: {
+    type: 'text',
+    component: DateTimePicker,
   },
 };

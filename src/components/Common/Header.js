@@ -61,7 +61,7 @@ export class Header extends Component {
           Quản lý sự kiện
         </a>
         <div className="dropdown-menu" aria-labelledby="dropdown-me">
-          <Link className="dropdown-item" to="/me/event">Tạo sự kiện mới</Link>
+          <Link className="dropdown-item" to="/me/event/new">Tạo sự kiện mới</Link>
           <div className="dropdown-divider" />
           <Link className="dropdown-item" to="/me/event">Sự kiện của tôi</Link>
           <Link className="dropdown-item" to="/me/ticket">Vé của tôi</Link>
