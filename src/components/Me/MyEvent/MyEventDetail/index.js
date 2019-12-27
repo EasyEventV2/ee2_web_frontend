@@ -3,6 +3,7 @@ import {
   Link, Switch, Route, Redirect, withRouter,
 } from 'react-router-dom';
 import MyEventGroup from './MyEventGroup';
+import MyEventInfo from './MyEventInfo';
 
 
 class MyEventDetail extends Component {
@@ -49,7 +50,7 @@ class MyEventDetail extends Component {
     return (
       <div className="col-lg-9 col-md-8">
         <Switch>
-          <Route exact path="/me/event/:eventId" component={() => <div>1</div>} />
+          <Route exact path="/me/event/:eventId" component={MyEventInfo} />
           <Route path="/me/event/:eventId/groups" component={MyEventGroup} />
           <Redirect to={`/me/event/${eventId}`} />
         </Switch>
