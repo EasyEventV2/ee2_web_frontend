@@ -4,6 +4,18 @@ import { FormKey } from 'constants/form';
 import Field from 'components/Common/Form/Field';
 
 class RegisterForm extends Component {
+  componentWillMount() {
+    const {
+      initialize,
+      initialValues,
+    } = this.props;
+    if (initialValues) {
+      initialize({
+        ...initialValues,
+      });
+    }
+  }
+
   onSubmit = (e) => {
     const { handleSubmit } = this.props;
     e.preventDefault();

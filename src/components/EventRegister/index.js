@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { getEventDetail, registerGuest } from 'datalayer/actions/event.action';
 import { selectEventDetail } from 'datalayer/selectors/event.selector';
-import { selectUserId } from 'datalayer/selectors/user.selector';
+import { selectUserInfo } from 'datalayer/selectors/user.selector';
 import { showError, showSuccess } from 'utils/toastr';
 import Header from 'components/Common/Header';
 import Footer from 'components/Common/Footer';
@@ -103,6 +103,10 @@ class EventRegister extends Component {
   }
 
   render() {
+    const {
+      full_name,
+      email,
+    } = this.props;
     return (
       <>
         <Header />
@@ -118,6 +122,10 @@ class EventRegister extends Component {
                 <hr />
                 <RegisterForm
                   onSubmit={this.handleSubmit}
+                  initialValues={{
+                    full_name,
+                    email,
+                  }}
                 />
               </div>
             </div>
@@ -139,8 +147,17 @@ const mapStateToProps = ({ event, user }) => {
     start_time,
     end_time,
   } = selectEventDetail(event);
+  const {
+    userId,
+    full_name,
+    email,
+  } = selectUserInfo(user);
   return {
-    userId: selectUserId(user),
+    // from user
+    userId,
+    full_name,
+    email,
+    // from event
     contact,
     location,
     category,
