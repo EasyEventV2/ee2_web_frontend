@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { showError } from 'utils/toastr';
 import { getMyEvents } from 'datalayer/actions/user.action';
-import { Role } from 'constants/common';
+import RoleBadge from 'components/Common/RoleBadge';
 import Pagination from 'components/Common/Pagination';
 import Spinner from 'components/Common/Spinner';
 
@@ -37,19 +37,6 @@ class MyEvent extends Component {
     });
   }
 
-  renderRole = (role) => {
-    if (role === Role.ADMIN) {
-      return <span className="badge badge-primary">ADMIN</span>;
-    }
-    if (role === Role.STAFF) {
-      return <span className="badge badge-secondary">STAFF</span>;
-    }
-    if (role === Role.OPERATOR) {
-      return <span className="badge badge-success">OPERATOR</span>;
-    }
-    return null;
-  }
-
   renderEventList = () => {
     const { eventList } = this.state;
     return (
@@ -69,8 +56,10 @@ class MyEvent extends Component {
                 <Link target="_blank" to={`/event/${item.event._id}`}>{item.event.name}</Link>
               </td>
               <td>{`${moment(item.event.start_time).format('DD/M/YYYY')} - ${moment(item.event.end_time).format('DD/M/YYYY')}`}</td>
-              <td className="text-center">{this.renderRole(item.name)}</td>
-              <td><Link target="_blank" to={`/event/${item.event._id}`}>Chỉnh sửa</Link></td>
+              <td className="text-center">
+                <RoleBadge role={item.name} />
+              </td>
+              <td><Link to={`/me/event/${item.event._id}`}>Chỉnh sửa</Link></td>
             </tr>
           ))}
         </tbody>
