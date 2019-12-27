@@ -3,6 +3,7 @@ import { eventAction } from 'constants/actions';
 export const INITIAL_STATE = {
   hotEvents: null,
   eventDetail: null,
+  categories: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,6 +19,13 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         eventDetail: action.payload.data,
+      };
+    }
+
+    case eventAction.GET_CATEGORIES_SUCCESS: {
+      return {
+        ...state,
+        categories: action.payload.data,
       };
     }
 

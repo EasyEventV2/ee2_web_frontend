@@ -5,6 +5,7 @@ import {
 import Header from 'components/Common/Header';
 import Footer from 'components/Common/Footer';
 import MyEvent from 'components/Me/MyEvent';
+import NewEvent from 'components/Me/MyEvent/NewEvent';
 import MyTicket from 'components/Me/MyTicket';
 
 class Me extends Component {
@@ -36,6 +37,7 @@ class Me extends Component {
   renderMain = () => (
     <div className="col-12">
       <Switch>
+        <Route exact path="/me/event/new" component={NewEvent} />
         <Route path="/me/event" component={MyEvent} />
         <Route path="/me/ticket" component={MyTicket} />
         <Redirect to="/me/event" />

@@ -22,3 +22,15 @@ export const registerGuest = (eventId, values, userId = null) => ({
     },
   }),
 });
+
+export const getCategories = () => ({
+  type: eventAction.GET_CATEGORIES,
+  promise: get('/categories'),
+});
+
+export const addNewEvent = (data) => ({
+  type: eventAction.ADD_NEW_EVENT,
+  promise: post('/events', {
+    ...data,
+  }),
+});

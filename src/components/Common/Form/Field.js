@@ -15,6 +15,7 @@ function Field(props) {
     required,
     type,
     options,
+    scrollable,
     ...rest
   } = props;
 
@@ -57,7 +58,11 @@ function Field(props) {
         className={`form-group ${wrapperClassName}`}
       >
         {renderLabel()}
-        <div id={id}>
+        <div
+          id={id}
+          className={scrollable ? 'overflow-auto border rounded p-1 bg-white' : ''}
+          style={scrollable ? { maxHeight: 150 } : {}}
+        >
           {options.map((option) => (
             <div
               className={`${defaultWrapperClassName}`}
