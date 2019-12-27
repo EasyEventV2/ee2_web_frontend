@@ -36,12 +36,12 @@ class EventDetail extends Component {
 
   renderTop = () => {
     const {
-      start_time, end_time, name, eventLocation,
+      start_time, end_time, name, eventLocation, image_url,
     } = this.props;
     return (
       <>
         <img
-          src="https://via.placeholder.com/400x150"
+          src={image_url}
           className="w-100"
           alt=""
         />
@@ -277,6 +277,7 @@ const mapStateToProps = ({ event }) => {
     description,
     start_time,
     end_time,
+    image_url,
   } = selectEventDetail(event);
   return {
     contact,
@@ -286,6 +287,7 @@ const mapStateToProps = ({ event }) => {
     description,
     start_time,
     end_time,
+    image_url,
   };
 };
 

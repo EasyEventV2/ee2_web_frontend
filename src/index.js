@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import 'toastr/build/toastr.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-image-crop/dist/ReactCrop.css';
 import 'assets/css/spinner.css';
 import 'assets/css/main.css';
 import App from 'components/App';

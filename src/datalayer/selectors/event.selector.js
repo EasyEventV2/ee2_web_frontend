@@ -31,6 +31,7 @@ export const selectEventDetail = (state) => {
     description: null,
     start_time: 0,
     end_time: 0,
+    image_url: 'https://via.placeholder.com/400x150',
     ...data,
   };
 };

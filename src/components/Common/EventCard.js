@@ -17,11 +17,11 @@ function EventCard({ onClick, event }) {
         <div
           className="container-fluid p-0"
           style={{
-            height: 250,
+            height: 200,
             overflow: 'hidden',
           }}
         >
-          <img className="card-img-top" src="https://via.placeholder.com/150x300" alt="" />
+          <img className="card-img-top" src={event.image_url} alt="" />
         </div>
         <div className="card-body">
           <h5 className="card-title">{event.name || 'Tên sự kiện'}</h5>

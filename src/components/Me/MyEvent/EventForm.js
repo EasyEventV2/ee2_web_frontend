@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { reduxForm, Field as ReduxFormField } from 'redux-form';
 import { connect } from 'react-redux';
+import configs from 'configs';
 import LocationPicker from 'react-location-picker';
 import { FormKey } from 'constants/form';
 import Field from 'components/Common/Form/Field';
+import ImageCrop from 'components/Me/MyEvent/ImageCrop';
 
 const defaultPosition = {
   lat: 21.04192103737484,
@@ -11,6 +13,22 @@ const defaultPosition = {
 };
 
 class EventForm extends Component {
+  handleImage = (blob) => new Promise((resolve) => {
+    const formData = new FormData();
+    formData.append('image', blob);
+    formData.append('type', 'URL');
+
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        resolve(JSON.parse(request.responseText));
+      }
+    };
+    request.open('POST', `${configs.imgurApiUrl}/image`);
+    request.setRequestHeader('Authorization', `Client-ID ${configs.imgurClientId}`);
+    request.send(formData);
+  })
+
   onSubmit = (e) => {
     const { handleSubmit } = this.props;
     e.preventDefault();
@@ -20,7 +38,6 @@ class EventForm extends Component {
   render() {
     // TODO: add min and max time for start/end
     const { categories } = this.props;
-    console.log(this.props);
     return (
       <form onSubmit={this.onSubmit}>
         <h5 className="mb-4">Thông tin cơ bản</h5>
@@ -119,7 +136,22 @@ class EventForm extends Component {
               </div>
             )}
           />
-
+        </div>
+        <hr />
+        <h5 className="mb-4">Upload ảnh poster</h5>
+        <div className="form-group">
+          <ReduxFormField
+            name="image_url"
+            component={(props) => (
+              <ImageCrop
+                onSubmit={(blob) => {
+                  this.handleImage(blob).then((res) => {
+                    props.input.onChange(res.data.link);
+                  });
+                }}
+              />
+            )}
+          />
         </div>
         <button type="submit" className="btn btn-warning btn-lg float-right">TẠO SỰ KIỆN</button>
       </form>
