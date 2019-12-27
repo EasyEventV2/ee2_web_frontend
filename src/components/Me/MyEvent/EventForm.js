@@ -87,20 +87,6 @@ class EventForm extends Component {
             name="location"
             component={(props) => (
               <div>
-                <Field
-                  name="location.place"
-                  label="Địa điểm tổ chức"
-                  placeholder="VD: Toà nhà Vincom"
-                  required
-                />
-                <div className="form-group">
-                  <label>Toạ độ</label>
-                  <input className="form-control" readOnly value={`${props.input.value.latitude},${props.input.value.longitude}`} />
-                </div>
-                <div className="form-group">
-                  <label>Địa chỉ</label>
-                  <input className="form-control" readOnly value={props.input.value.address} />
-                </div>
                 <h6>Kéo thả vị trí ghim để chọn toạ độ</h6>
                 <LocationPicker
                   containerElement={<div style={{ height: '100%' }} />}
@@ -115,6 +101,20 @@ class EventForm extends Component {
                       address,
                     });
                   }}
+                />
+                <div className="form-group">
+                  <label>Toạ độ</label>
+                  <input className="form-control" readOnly value={`${props.input.value.latitude},${props.input.value.longitude}`} />
+                </div>
+                <div className="form-group">
+                  <label>Địa chỉ</label>
+                  <input className="form-control" readOnly value={props.input.value.address} />
+                </div>
+                <Field
+                  name="location.place"
+                  label="Địa điểm tổ chức"
+                  placeholder="VD: Toà nhà Vincom"
+                  required
                 />
               </div>
             )}
