@@ -3,17 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "2.4.2",
     "deep-freeze": "0.0.1",
-    "prop-types": "^15.7.2",
-    "query-string": "^6.8.3",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
-    "react-redux": "^7.1.1",
-    "react-router-dom": "^5.1.1",
+    "moment": "2.24.0",
+    "prop-types": "15.7.2",
+    "query-string": "6.8.3",
+    "react": "16.10.1",
+    "react-datepicker": "^2.10.1",
+    "react-dom": "16.10.1",
+    "react-image-crop": "^8.4.2",
+    "react-location-picker": "^1.5.0",
+    "react-redux": "7.1.1",
+    "react-router-dom": "5.1.1",
     "react-scripts": "3.1.2",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "react-share": "^3.0.1",
+    "react-slick": "0.25.2",
+    "redux": "4.0.4",
+    "redux-form": "8.2.6",
+    "redux-thunk": "2.3.0",
+    "serve": "11.2.0",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "start": "REACT_APP_ENV=local react-scripts start",
@@ -26,7 +35,8 @@
     "test:cov": "REACT_APP_ENV=local react-scripts test --watchAll=false --coverage",
     "lint": "node ./scripts/lint.js",
     "lint:warn": "WARN=1 node ./scripts/lint.js",
-    "lint:fix": "FIX=1 WARN=1 node ./scripts/lint.js"
+    "lint:fix": "FIX=1 WARN=1 node ./scripts/lint.js",
+    "serve": "serve -s build -p 9000"
   },
   "eslintConfig": {
     "extends": "react-app"

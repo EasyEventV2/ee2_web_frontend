@@ -1,5 +1,5 @@
 const localConfig = {
-  apiUrl: 'http://127.0.0.1:8000',
+  apiUrl: 'http://localhost:3003',
 };
 
 export default localConfig;

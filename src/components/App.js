@@ -1,36 +1,52 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
   BrowserRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { testPromiseFailure, testPromiseSuccess } from 'redux/actions/app.action';
+import { connect } from 'react-redux';
 
+import { getInfo } from 'datalayer/actions/user.action';
+
+import ModalContainer from 'components/Modal';
 import Home from 'components/Home';
+import EventDetail from 'components/EventDetail';
+import EventRegister from 'components/EventRegister';
+import Me from 'components/Me';
+import Verify from 'components/Verify';
 
 export class App extends React.Component {
-  getSuccess = () => {
-    const { testPromiseSuccess } = this.props;
-    testPromiseSuccess()
-      .then((res) => {
-        if (res.success) {
-          console.log('OK', res);
-        } else {
-          console.log('NOT OK', res);
-        }
-      });
+  componentDidMount() {
+    const { loggedIn, getInfo } = this.props;
+    if (loggedIn) {
+      getInfo();
+    }
   }
 
-  getFailure = () => {
-    const { testPromiseFailure } = this.props;
-    testPromiseFailure()
-      .then((res) => {
-        if (res.success) {
-          console.log('OK', res);
-        } else {
-          console.log('NOT OK', res);
-        }
-      });
+  componentDidUpdate(prevProps) {
+    const { loggedIn, getInfo } = this.props;
+    if (prevProps.loggedIn === false && loggedIn === true) {
+      getInfo();
+    }
+  }
+
+  renderRoutes = () => {
+    const { loggedIn } = this.props;
+
+    const publicRoutes = [
+      <Route exact path="/" component={Home} key="home" />,
+      <Route exact path="/event/:eventId" component={EventDetail} key="event_detail" />,
+      <Route exact path="/event/:eventId/register" component={EventRegister} key="event_register" />,
+      <Route path="/verify" component={Verify} key="verify" />,
+    ];
+
+    const privateRoutes = [
+      <Route path="/me" component={Me} key="me" />,
+    ];
+
+    return [
+      ...publicRoutes,
+      ...(loggedIn ? privateRoutes : []),
+      <Redirect to="/" key="redirect_home" />,
+    ];
   }
 
   render() {
@@ -38,34 +54,21 @@ export class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/home" component={null} />
-            <Route path="/about" component={null} />
-            <Route path="/" exact component={Home}>
-
-              {/* <header className="">
-                <p>{`App name: ${configs.appName}`}</p>
-                <p>{`API URL: ${configs.apiUrl}`}</p>
-                <button onClick={this.getSuccess}>Test redux success</button>
-                <button onClick={this.getFailure}>Test redux failure</button>
-              </header> */}
-            </Route>
-            <Redirect to="/" />
+            {this.renderRoutes()}
           </Switch>
         </Router>
+        <ModalContainer />
       </div>
     );
   }
 }
 
-App.propTypes = {
-  testPromiseSuccess: PropTypes.func,
-  testPromiseFailure: PropTypes.func,
-};
+const mapStateToProps = ({ user }) => ({
+  loggedIn: user.loggedIn,
+});
 
-const mapStateToProps = null;
 const mapDispatchToProps = {
-  testPromiseFailure,
-  testPromiseSuccess,
+  getInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
